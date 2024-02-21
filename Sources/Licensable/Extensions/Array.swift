@@ -24,7 +24,7 @@ import Foundation
 
 extension Array where Element == Licensable {
 
-    func flatten() -> [Licensable] {
+    public func flatten() -> [Licensable] {
         var licensables = [String: Licensable]()
         for licensable in self {
             licensables[licensable.id] = licensable
