@@ -39,7 +39,7 @@ extension Licensable where Self == License {
         let licenseURL = Bundle.module.url(forResource: "LICENSE", withExtension: nil)!
         return License(id: "https://github.com/inseven/licensable",
                        name: "Licensable",
-                       author: "Jsaon Morley",
+                       author: "Jason Morley",
                        text: try! String(contentsOf: licenseURL))
     }
 
