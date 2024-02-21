@@ -22,27 +22,40 @@
 
 import Foundation
 
-public struct License: Licensable {
+public struct AnyLicensable: Identifiable, Licensable {
 
     public let id: String
     public let name: String
     public let author: String
     public let text: String
-    public var attributes: [Attribute]
+    public let attributes: [Attribute]
     public var licenses: [Licensable]
 
-    public init(id: String = UUID().uuidString,
-                name: String,
-                author: String,
-                text: String,
-                attributes: [Attribute] = [],
-                licensaes: [Licensable] = []) {
-        self.id = id
-        self.name = name
-        self.author = author
-        self.text = text
-        self.attributes = attributes
-        self.licenses = licensaes
+    public init<T: Licensable>(_ licensable: T) {
+        id = licensable.id
+        name = licensable.name
+        author = licensable.author
+        text = licensable.text
+        attributes = licensable.attributes
+        licenses = licensable.licenses
+    }
+
+}
+
+extension Licensable {
+
+    public func eraseToAnyLicensable() -> AnyLicensable {
+        return AnyLicensable(self)
+    }
+
+}
+
+extension Array where Element == any Licensable {
+
+    public func eraseToAnyLicensable() -> [AnyLicensable] {
+        return map {
+            return $0.eraseToAnyLicensable()
+        }
     }
 
 }

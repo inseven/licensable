@@ -29,5 +29,6 @@ public protocol Licensable {
     var author: String { get }
     var text: String { get }
     var attributes: [Attribute] { get }
+    var licenses: [Licensable] { get }
 
 }
