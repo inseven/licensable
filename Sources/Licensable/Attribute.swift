@@ -22,13 +22,14 @@
 
 import Foundation
 
-public struct Attribute {
+public struct Attribute: Identifiable, Equatable {
 
-    public enum Value {
+    public enum Value: Equatable {
         case text(String)
         case url(URL)
     }
 
+    public let id = UUID()
     public let name: String
     public let value: Value
 
