@@ -22,12 +22,35 @@
 
 import Foundation
 
-public protocol Licensable {
+public struct Attribute {
 
-    var id: String { get }
-    var name: String { get }
-    var author: String { get }
-    var text: String { get }
-    var attributes: [Attribute] { get }
+    public enum Value {
+        case text(String)
+        case url(URL)
+    }
+
+    public let name: String
+    public let value: Value
+
+    public var stringValue: String {
+        switch self.value {
+        case .text(let text):
+            return text
+        case .url(let url):
+            return url.absoluteString
+        }
+    }
+
+}
+
+extension Attribute {
+
+    public static func url(_ url: URL, title: String) -> Attribute {
+        return Self.init(name: title, value: .url(url))
+    }
+
+    public static func text(_ text: String, title: String) -> Attribute {
+        return Self.init(name: title, value: .text(text))
+    }
 
 }

@@ -23,6 +23,35 @@
 import XCTest
 @testable import Licensable
 
+extension URL {
+
+    static let interact: URL = URL(string: "https://github.com/inseven/interact")!
+
+}
+
+extension License {
+
+    static var interact: License {
+        return .init(id: "https://github.com/inseven/interact",
+                     name: "Interact",
+                     author: "Jason Morley",
+                     text: "MIT License",
+                     attributes: [
+                        .url(.interact, title: "URL")
+                     ])
+    }
+
+}
+
 final class LicensableTests: XCTestCase {
+
+    func testSimpleLicense() {
+        let license = License.interact
+        XCTAssertEqual(license.id, "https://github.com/inseven/interact")
+        XCTAssertEqual(license.name, "Interact")
+        XCTAssertEqual(license.author, "Jason Morley")
+        XCTAssertEqual(license.text, "MIT License")
+        XCTAssertEqual(license.attributes.map({ $0.stringValue }), ["https://github.com/inseven/interact"])
+    }
 
 }

@@ -22,12 +22,12 @@
 
 import Foundation
 
-public protocol Licensable {
+struct License: Licensable {
 
-    var id: String { get }
-    var name: String { get }
-    var author: String { get }
-    var text: String { get }
-    var attributes: [Attribute] { get }
+    let id: String
+    let name: String
+    let author: String
+    let text: String
+    var attributes: [Attribute]
 
 }
