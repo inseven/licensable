@@ -22,12 +22,24 @@
 
 import Foundation
 
-struct License: Licensable {
+public struct License: Licensable {
 
-    let id: String
-    let name: String
-    let author: String
-    let text: String
-    var attributes: [Attribute]
+    public let id: String
+    public let name: String
+    public let author: String
+    public let text: String
+    public var attributes: [Attribute]
+
+    public init(id: String = UUID().uuidString,
+                name: String,
+                author: String,
+                text: String,
+                attributes: [Attribute] = []) {
+        self.id = id
+        self.name = name
+        self.author = author
+        self.text = text
+        self.attributes = attributes
+    }
 
 }
