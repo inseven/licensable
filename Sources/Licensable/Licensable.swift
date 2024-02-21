@@ -32,3 +32,15 @@ public protocol Licensable {
     var licenses: [Licensable] { get }
 
 }
+
+extension Licensable where Self == License {
+
+    public static var licensable: License {
+        let licenseURL = Bundle.module.url(forResource: "LICENSE", withExtension: nil)!
+        return License(id: "https://github.com/inseven/licensable",
+                       name: "Licensable",
+                       author: "Jsaon Morley",
+                       text: try! String(contentsOf: licenseURL))
+    }
+
+}
