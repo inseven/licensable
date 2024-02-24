@@ -40,7 +40,10 @@ extension Licensable where Self == License {
         return License(id: "https://github.com/inseven/licensable",
                        name: "Licensable",
                        author: "Jason Morley",
-                       text: try! String(contentsOf: licenseURL))
+                       text: try! String(contentsOf: licenseURL),
+                       attributes: [
+                           .url(URL(string: "https://github.com/inseven/licensable")!, title: "GitHub")
+                       ])
     }
 
 }
