@@ -36,13 +36,13 @@ public struct License: Licensable {
                 author: String,
                 text: String,
                 attributes: [Attribute] = [],
-                licensaes: [Licensable] = []) {
+                licenses: [Licensable] = []) {
         self.id = id
         self.name = name
         self.author = author
         self.text = text
         self.attributes = attributes
-        self.licenses = licensaes
+        self.licenses = licenses
     }
 
 }
