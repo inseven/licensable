@@ -22,9 +22,9 @@
 
 import Foundation
 
-public struct Attribute: Identifiable, Equatable {
+public struct Attribute: Identifiable, Equatable, Sendable {
 
-    public enum Value: Equatable {
+    public enum Value: Equatable, Sendable {
         case text(String)
         case url(URL)
     }

@@ -22,7 +22,7 @@
 
 import Foundation
 
-public struct License: Licensable {
+public struct License: Licensable, Sendable {
 
     public let id: String
     public let name: String

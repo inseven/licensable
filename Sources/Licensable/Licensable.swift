@@ -22,7 +22,7 @@
 
 import Foundation
 
-public protocol Licensable {
+public protocol Licensable: Sendable {
 
     var id: String { get }
     var name: String { get }
