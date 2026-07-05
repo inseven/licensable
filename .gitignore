@@ -1,5 +1,7 @@
 .DS_Store
 /.build
+/.local
+/_site
 /Packages
 xcuserdata/
 DerivedData/
