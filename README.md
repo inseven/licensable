@@ -1,6 +1,12 @@
 # Licensable
 
+[![build](https://github.com/inseven/licensable/actions/workflows/build.yaml/badge.svg)](https://github.com/inseven/licensable/actions/workflows/build.yaml)
+
 Lightweight Swift API for exporting license information
+
+## Documentation
+
+https://inseven.github.io/licensable/documentation/licensable/
 
 ## Usage
 
