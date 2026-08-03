@@ -23,26 +23,16 @@
 set -e
 set -o pipefail
 set -x
-set -u
 
-ROOT_DIRECTORY="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/null && pwd )"
-SCRIPTS_DIRECTORY="$ROOT_DIRECTORY/scripts"
-
-LOCAL_TOOLS_PATH="$ROOT_DIRECTORY/.local"
-
-# Install tools defined in `.tool-versions`.
-cd "$ROOT_DIRECTORY"
-mise install
-
-# Clean up and recreate the local tools directory.
-if [ -d "$LOCAL_TOOLS_PATH" ] ; then
-    rm -r "$LOCAL_TOOLS_PATH"
+# Actually make the release.
+FLAGS=()
+if $CHANGES_INITIAL_DEVELOPMENT ; then
+    FLAGS+=("--prerelease")
 fi
-mkdir -p "$LOCAL_TOOLS_PATH"
+gh release create "$CHANGES_TAG" --title "$CHANGES_TITLE" --notes-file "$CHANGES_NOTES_FILE" "${FLAGS[@]}"
 
-# Source `environment.sh` to ensure the remainder of our paths are set up correctly.
-source "$SCRIPTS_DIRECTORY/environment.sh"
-
-# Install the Python dependencies (uses PIPENV_PIPFILE from environment.sh).
-pip install --user --ignore-installed --upgrade pip pipenv wheel certifi
-pipenv install
+# Upload the attachments.
+for attachment in "$@"
+do
+    gh release upload "$CHANGES_TAG" "$attachment"
+done
