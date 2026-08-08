@@ -1,9 +1,7 @@
 .DS_Store
 /.build
-/.local
 /_site
 /Packages
-/scripts/Pipfile.lock
 xcuserdata/
 DerivedData/
 .swiftpm/configuration/registries.json
